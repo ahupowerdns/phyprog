@@ -1,6 +1,7 @@
 #include "rfile.hh"
 #include <stdexcept>
 #include <string>
+#include <string.h>
 #include <errno.h>
 using namespace std;
 
