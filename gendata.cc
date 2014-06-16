@@ -10,11 +10,18 @@ using namespace std;
 // parameters x y z detection-signal noise-level curvature
 int main(int argc, char **argv)
 {
+  if(argc!=7) {
+    cerr<<"Syntax: \n";
+    cerr<<"gendata x y z signal noise human"<<endl;
+    return(EXIT_FAILURE);
+  }
+
   int xsize{atoi(argv[1])};
   int ysize{atoi(argv[2])};
   int zsize{atoi(argv[3])};
   double sigstrength{atof(argv[4])};
   double noise{atof(argv[5])};
+  bool human=atoi(argv[6]);
 
   struct timeval tv;
   gettimeofday(&tv, 0);
@@ -31,12 +38,11 @@ int main(int argc, char **argv)
   Vector3d n = b-a;
   n/=n.norm();
 
-
   std::poisson_distribution<int> distribution(noise);
 
   printf("%d %d %d\n", xsize, ysize, zsize);
   uint32_t output;
-  bool human=false;
+
   for(int z=0; z < zsize; ++z) {
     for(int y=0; y < ysize; ++y) {
       for(int x=0; x< xsize; ++x) {
