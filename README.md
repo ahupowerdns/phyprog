@@ -40,8 +40,7 @@ Making it more complicated
 
 1. Each sensor actually reports a Poisson distributed value, even if no
 particle passes by
-2. Particles are sometimes not observed, even when they pass close by to a
-detector - wiring for example might shadow the detection
+2. Depending on their path, particles can pass closer to farther away from detectors
 3. Detectors are not positioned perfectly or conversely, particles may bend
 a bit
 
@@ -58,3 +57,10 @@ Prizes are awarded not for raw speed or largest data set solved, but for
 being good, where good is roughly measured according to [the 20 programming
 rules](https://docs.google.com/document/d/1hFO5d5LnLUSI72v6VWAXuoPtDG6N2TOkfypcM9d2x5Q/edit?usp=sharing)
 
+Installing
+==========
+Either install libeigen3-dev (Debian, Ubuntu), or:
+
+    $ wget http://bitbucket.org/eigen/eigen/get/3.2.1.tar.bz2
+    $ tar xf 3.2.1.tar.bz2
+    $ ln -s eigen-eigen-*/Eigen .
