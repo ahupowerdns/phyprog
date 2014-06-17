@@ -89,3 +89,18 @@ Either install libeigen3-dev (Debian, Ubuntu), or:
     $ wget http://bitbucket.org/eigen/eigen/get/3.2.1.tar.bz2
     $ tar xf 3.2.1.tar.bz2
     $ ln -s eigen-eigen-*/Eigen .
+
+Tools
+=====
+	gendata x y z signal noise human
+
+x, y and z are width, depth and height. Signal is the strength of a full on
+detection of a particle.  Noise is the Poisson mean value of no detection. 
+Human is '0' or '1' for binary or human friendly output.  Gendata prints out
+the coordinates of where the random particle ray enters and leaves the cube.
+
+ 
+	rdata datafile x1 y1 z1 x2 y2 z2
+
+Analyzes a datafile made by gendata, and tries how many points a line through 
+(x1,y1,z1) to (x2,y2,z2) scores. 
