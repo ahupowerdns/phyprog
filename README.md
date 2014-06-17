@@ -57,6 +57,31 @@ Prizes are awarded not for raw speed or largest data set solved, but for
 being good, where good is roughly measured according to [the 20 programming
 rules](https://docs.google.com/document/d/1hFO5d5LnLUSI72v6VWAXuoPtDG6N2TOkfypcM9d2x5Q/edit?usp=sharing)
 
+Details
+=======
+Coordinate system is of course arbitrary, but it helps if we mentally align it identically.
+(0,0,0) is the leftmost and hindmost part of a cube.
+
+
+     (0,0,0)           (1,0,0)
+        +----------------+
+       /                /|
+      /                / |
+     /                /  |
+    +----------------+   |
+    |                |   |
+    |                |   | 
+    |                |   + (1,0,1)
+    |                |  /
+    | (0,1,1)        | /
+    +----------------+/  (1,1,1)
+
+The file format starts with three numbers in ascii describing X (width), Y (depth) and Z (height) dimensions, 
+followed by a single newline. 
+Then follow x * y * z bytes, starting with z=0, y=0 and then x=0...width-1 as raw bytes (0-255).
+
+So to find value (x,y,z), read the first line with dimensions, and then seek z * (width * depth) + y * width +x bytes.
+
 Installing
 ==========
 Either install libeigen3-dev (Debian, Ubuntu), or:
