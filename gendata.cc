@@ -7,6 +7,7 @@
 using namespace Eigen;
 using namespace std;
 
+//! does the line intersect the plane, and if so, where?
 bool intersect(const Vector3d& lineBasis, const Vector3d& lineDirection, 
 	       const Vector3d& planeBasis, const Vector3d& planeNormal, 
 	       Vector3d* place)
@@ -21,6 +22,7 @@ bool intersect(const Vector3d& lineBasis, const Vector3d& lineDirection,
   return true;
 }
 
+//! is a point within the box (0,0,0) (x,y,z) ?
 bool inBox(const Vector3d& place, double x, double y, double z)
 {
   return 
@@ -29,7 +31,9 @@ bool inBox(const Vector3d& place, double x, double y, double z)
     place[2]>=0 && place[2] <= z;
 }
 
-// parameters x y z detection-signal noise-level curvature
+
+
+// parameters x y z detection-signal noise-level human
 int main(int argc, char **argv)
 {
   if(argc!=7) {
@@ -75,16 +79,18 @@ int main(int argc, char **argv)
     {{0,0,zsize},     { 0, 0,-1}, "bottom"}   
   };
 
-
+  ostringstream str;
   for(auto& s: sides) {
     Vector3d place;
     if(intersect(a, n, s.origin, s.normal, &place) && inBox(place, xsize, ysize, zsize)) {
-      cerr<<s.name<<" intersection: \n"<<place<<endl;
+      cerr<<s.name<<" intersection: "<<place[0]<<" "<<place[1]<<" "<<place[2]<<endl;
+      str<<place[0]<<" "<<place[1]<<" "<<place[2]<<" ";
     }
     else 
-      cerr<<"Line does not intersect with "<<s.name<<endl;
+      ; // cerr<<"Line does not intersect with "<<s.name<<endl;
   }
 
+  cerr<<str.str()<<endl;
   std::poisson_distribution<int> distribution(noise);
 
   printf("%d %d %d\n", (int)xsize, (int)ysize, (int)zsize);
