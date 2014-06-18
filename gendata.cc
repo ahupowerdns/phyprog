@@ -55,10 +55,10 @@ int main(int argc, char **argv)
 
   Vector3d a(std::uniform_real_distribution<double>(0,xsize)(generator), 
 	     std::uniform_real_distribution<double>(0,ysize)(generator), 
-	     std::uniform_real_distribution<double>(0,zsize)(generator));
+	     zsize == 1 ? 0 : std::uniform_real_distribution<double>(0,zsize)(generator));
   Vector3d b(std::uniform_real_distribution<double>(0,xsize)(generator), 
 	     std::uniform_real_distribution<double>(0,ysize)(generator), 
-	     std::uniform_real_distribution<double>(0,zsize)(generator));
+	     zsize ==1 ? 0 : std::uniform_real_distribution<double>(0,zsize)(generator));
 
   Vector3d n = b-a;
   n/=n.norm();
