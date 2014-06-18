@@ -1,9 +1,12 @@
-fileName = 'test-file-binary-10-10-10-100-0';
+clear all
+fileName = 'simplest-test-file-10-10-1-20';
 
 file = fopen(fileName);
 line = fgetl(file);
-dimVector = regexp(line,' ','split')';  % In newer matlab version: strsplit(line,' ')
-dimensions = str2num(cell2mat(dimVector))
+dimVectorCell = regexp(line,' ','split')' % In newer matlab version: strsplit(line,' ')
+for i = 1:size(dimVectorCell,1)
+    dimensions(i) = str2num(cell2mat(dimVectorCell(i)))
+end
 
 data = fread(file);
 for z = 1:dimensions(3)
